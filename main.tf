@@ -1,30 +1,18 @@
-# Create a new instance of the latest Ubuntu 14.04 on an
-# t2.micro node with an AWS Tag naming it "HelloWorld"
+# Configure the AWS Provider
+
 provider "aws" {
-  region = "us-east-1"
+  region     = "us-west-1"
 }
 
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-trusty-14.04-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"] # Canonical
-}
+# Create the AMI Instance
 
 resource "aws_instance" "web" {
-  ami           = "${data.aws_ami.ubuntu.id}"
-  instance_type = "t2.micro"
+  ami           = "ami-0ac019f4fcb7cb7e6"
+  instance_type = "t1.micro"
 
-  tags = {
-    Name = "HelloWorld"
+  tags {
+    Name = "demo01"
+    Owner = "tuffner"
+    Dept = "DevOps"
   }
 }

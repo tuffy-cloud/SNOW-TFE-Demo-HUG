@@ -7,7 +7,7 @@ provider "aws" {
 # Configure the S3 Bucket
 
 resource "aws_s3_bucket" "b" {
-  bucket = "tuffy03-snow-demo-bucket03"
+  bucket = "tuffy03-snow-demo-bucket04"
   acl    = "private"
 
   tags = {
